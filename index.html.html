@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3 Onboarding - Meghan Roper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            position: relative;
+        }
+
+        .slide:last-child {
+            page-break-after: avoid;
+        }
+
+        /* Slide backgrounds */
+        .slide.title-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .slide.content-slide {
+            background: white;
+        }
+
+        .slide.highlight-slide {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0fe 100%);
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            font-weight: 600;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+
+        .title-slide h2 {
+            color: white;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+            font-size: 2.2em;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-top: 30px;
+            color: #667eea;
+        }
+
+        h4 {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #764ba2;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .subtitle {
+            font-size: 1.6em;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+        /* Lists */
+        ul {
+            margin-left: 30px;
+            margin-bottom: 25px;
+        }
+
+        li {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+
+        /* Links */
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #764ba2;
+            border-bottom: 1px solid #764ba2;
+        }
+
+        /* Layout helpers */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 20px;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        /* Special boxes */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            margin: 25px 0;
+        }
+
+        .team-section {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .client-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .client-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .profile-card {
+            background: white;
+            border: 2px solid #764ba2;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .profile-card h4 {
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .profile-card p {
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .key-stat {
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.4em;
+            font-weight: 600;
+            text-align: center;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .action-box {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .action-box h3 {
+            color: #667eea;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        /* Slide numbers */
+        .slide-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .title-slide .slide-number {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        /* Print styles */
+        @media print {
+            .slide {
+                page-break-after: always;
+                min-height: 100vh;
+            }
+            
+            .slide:last-child {
+                page-break-after: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+            
+            .two-column,
+            .three-column,
+            .client-grid,
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide">
+            <h1>V3 Onboarding</h1>
+            <h2>Welcome Meghan Roper</h2>
+            <p class="subtitle">Your comprehensive guide to V3 systems, tools, and processes</p>
+            <div class="slide-number">1/9</div>
+        </div>
+
+        <!-- Slide 2: V3 Systems & Tools -->
+        <div class="slide content-slide">
+            <h2>V3 Systems & Tools</h2>
+            <div class="two-column">
+                <div>
+                    <h3>🔧 Core Systems</h3>
+                    <ul>
+                        <li><strong>Gmail Setup:</strong> Mailreach for email warming</li>
+                        <li><strong>LinkedIn Recruiter:</strong> Setup & workflow</li>
+                        <li><strong><a href="https://docs.google.com/document/d/1plj87xqK_3C_vSIVNCJaLesXtboR4C2KRZmtJjgNLLc/edit?tab=t.0#heading=h.ma7qkzv50rah">Gem ATS:</a></strong> V3 User Guide</li>
+                        <li><strong>Gem Outreach:</strong> Email campaigns</li>
+                    </ul>
+                    
+                    <h3>🤖 AI & Analytics</h3>
+                    <ul>
+                        <li><strong><a href="https://docs.google.com/document/d/1TS3IYmYC7zRBh2s3N6S5m7SEYi_CEIMwdJuH62s5zv4/edit?tab=t.0#heading=h.erswe48quvsb">Metaview:</a></strong> V3 Guide</li>
+                        <li><strong><a href="https://docs.juicebox.work/">Juicebox (PeopleGPT):</a></strong> Knowledge Base</li>
+                        <li><strong>PeopleGPT:</strong> Sourcing Agents</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>📊 Management</h3>
+                    <ul>
+                        <li><strong><a href="https://v3-recruiting-system.vercel.app/dashboard">V3 Client Hub:</a></strong> Internal dashboard</li>
+                        <li><strong>Paraform:</strong> <a href="https://www.paraform.com/help">Help Center</a></li>
+                        <li><strong>Autoforwarding:</strong> From v3tp.com</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <h4>🔖 Bookmark This!</h4>
+                        <p><a href="https://v3-recruiting-system.vercel.app/dashboard">V3 Internal Client Hub</a></p>
+                        <p>Your central command center for all active roles</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">2/9</div>
+        </div>
+
+        <!-- Slide 3: Organization Structure - Jake's Team -->
+        <div class="slide content-slide">
+            <h2>V3 Organization Structure</h2>
+            <div class="team-section">
+                <h3>👥 Jake Flohr's Team</h3>
+                <div class="client-grid">
+                    <div class="client-card">
+                        <h4>Sarah Keller</h4>
+                        <ul>
+                            <li><a href="http://additive.ai">Additive.ai</a></li>
+                            <li>DealOps</li>
+                            <li>Zilliz</li>
+                        </ul>
+                    </div>
+                    <div class="client-card">
+                        <h4>Ryan Grudnitski</h4>
+                        <ul>
+                            <li>Affirm</li>
+                            <li>FutureHouse</li>
+                            <li>Titan</li>
+                            <li>Zuma</li>
+                        </ul>
+                    </div>
+                    <div class="client-card">
+                        <h4>Paul Sledd</h4>
+                        <ul>
+                            <li>Anysource</li>
+                            <li>Basis AI</li>
+                            <li>Owner</li>
+                        </ul>
+                    </div>
+                    <div class="client-card">
+                        <h4>Shannae Brydon</h4>
+                        <ul>
+                            <li>Strada</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="client-card" style="margin-top: 20px; background: linear-gradient(135deg, #667eea20, #764ba220);">
+                    <h4>Meghan Roper (You!)</h4>
+                    <p>New team member ready to make an impact</p>
+                </div>
+            </div>
+            <div class="slide-number">3/9</div>
+        </div>
+
+        <!-- Slide 4: Jamie's Team -->
+        <div class="slide content-slide">
+            <h2>Jamie Moore's Team</h2>
+            <div class="team-section">
+                <div class="client-grid">
+                    <div class="client-card">
+                        <h4>Dan Stein</h4>
+                        <ul>
+                            <li>Mercor</li>
+                            <li>Greater</li>
+                            <li>Sitch</li>
+                        </ul>
+                    </div>
+                    <div class="client-card">
+                        <h4>Erin Gales</h4>
+                        <ul>
+                            <li><a href="http://please.ai">Please.ai</a></li>
+                            <li>Rely Health</li>
+                        </ul>
+                    </div>
+                    <div class="client-card">
+                        <h4>Kyle Holin</h4>
+                        <ul>
+                            <li>Moonware</li>
+                            <li>Slower</li>
+                        </ul>
+                    </div>
+                    <div class="client-card">
+                        <h4>Nicole Starrantino</h4>
+                        <ul>
+                            <li>Charta Health</li>
+                            <li>Perch</li>
+                            <li>Poggio</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h3>🎯 Week 1 Goal</h3>
+                    <p>Shadow recruiter screens across all these clients to learn V3's approach and methodology</p>
+                </div>
+            </div>
+            <div class="slide-number">4/9</div>
+        </div>
+
+        <!-- Slide 5: Research Team -->
+        <div class="slide highlight-slide">
+            <h2>V3 Talent Research Team</h2>
+            <div class="highlight-box">
+                <h3>🔍 Big Bang (BB) Research Team</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>Leadership</h4>
+                        <ul>
+                            <li><strong>Pranay</strong> - Head of Sourcing</li>
+                            <li><strong>Aru</strong> - Sourcing Manager</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Talent Researchers</h4>
+                        <ul>
+                            <li>Riday</li>
+                            <li>Rohit</li>
+                            <li>Sangha</li>
+                            <li>Sumit G</li>
+                            <li>Kavya</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-box" style="margin-top: 40px;">
+                <h3>🤝 Working with Research Team</h3>
+                <p>The Big Bang team will be essential for scaling your sourcing efforts. They provide comprehensive candidate research and initial outreach support.</p>
+            </div>
+            <div class="slide-number">5/9</div>
+        </div>
+
+        <!-- Slide 6: Probook Introduction -->
+        <div class="slide content-slide">
+            <h2>Your First Client: Probook</h2>
+            <div class="highlight-box">
+                <h3>📅 Onboarding Schedule</h3>
+                <p><strong>Monday 3PM PT</strong> - Jake will run the onboarding call with CTO <a href="https://www.linkedin.com/in/lewisfzhang/">Lewis Zhang</a></p>
+            </div>
+            
+            <div class="action-grid">
+                <div class="action-box">
+                    <h3>🔧 Setup Tasks</h3>
+                    <ul>
+                        <li>Set up Client & Jobs in Gem</li>
+                        <li>Set up Sequences in Gem</li>
+                        <li>Add Client & Roles to V3 Client Hub</li>
+                        <li>Joint-Sourcing preparation</li>
+                    </ul>
+                </div>
+                <div class="action-box">
+                    <h3>📚 Key Resources</h3>
+                    <ul>
+                        <li><a href="https://www.probook.ai/">Probook Website</a></li>
+                        <li><a href="https://www.paraform.com/share/probook-ai/cm7ikwjur0001la0cacngg9w2">Job Description</a></li>
+                        <li><a href="https://mtvw.ai/n/75375188-5e97-11f0-8a9d-8366a3a2c323">Metaview BD Recording</a></li>
+                        <li><a href="https://docs.google.com/document/d/19TKfd_N29DRJUmOUOZNG1cKPmbygIxVuzp-RLKU7Msw/edit?tab=t.0">Client Dossier</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="key-stat">
+                Target: 100 outreach messages this week
+            </div>
+            <div class="slide-number">6/9</div>
+        </div>
+
+        <!-- Slide 7: Probook Role Details -->
+        <div class="slide content-slide">
+            <h2>Probook: Product Engineer Role</h2>
+            <div class="highlight-box">
+                <h3>🎯 Role Overview</h3>
+                <p><strong>Product Engineer (Full Stack)</strong></p>
+                <p>Around 3 years experience, appetite for senior level</p>
+                <p style="color: #667eea; font-weight: 600; font-size: 1.3em; margin-top: 20px;">
+                    ⚡ Must have an outstanding "cracked" accomplishment
+                </p>
+            </div>
+            
+            <h3>🏆 Required "Cracked" Accomplishments</h3>
+            <div class="two-column">
+                <div>
+                    <ul>
+                        <li><strong>Coding Excellence:</strong> Top finish in competitions (ICPC, etc.)</li>
+                        <li><strong>Entrepreneurial:</strong> Past founder experience</li>
+                        <li><strong>Early Stage:</strong> Founding engineer at successful company</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li><strong>Career Trajectory:</strong> High-slope engineering career</li>
+                        <li><strong>Open Source:</strong> Top GitHub repository</li>
+                        <li><strong>Career Pivot:</strong> Former quant → Software Engineer</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">7/9</div>
+        </div>
+
+        <!-- Slide 8: Sample Profiles -->
+        <div class="slide content-slide">
+            <h2>Probook: Target Profile Examples</h2>
+            
+            <div class="profile-card">
+                <h4><a href="https://www.linkedin.com/in/zachary-stack-/details/experience/">Zachary Stack</a></h4>
+                <p><strong>Harvard CS, 4X return Citadel intern</strong></p>
+                <p>Demonstrates exceptional performance in competitive finance/tech environment</p>
+            </div>
+            
+            <div class="profile-card">
+                <h4><a href="https://www.linkedin.com/in/ryan-le-54ab22191/">Ryan Le</a></h4>
+                <p><strong>0 → 1 GenAI products for Facebook/Instagram advertisers</strong></p>
+                <p>Built innovative AI products from scratch at major tech company</p>
+            </div>
+            
+            <div class="profile-card">
+                <h4><a href="https://www.linkedin.com/in/muhammed-makhambetov-9b1744252/">Muhammed Makhambetov</a></h4>
+                <p><strong>Founding Engineer at YC company → 7-figure sales</strong></p>
+                <p>Proven track record of building successful products from ground up</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>🎯 This Week's Mission</h3>
+                <p style="text-align: center; font-size: 1.4em; color: #667eea; font-weight: 600;">
+                    Find and reach out to 100 similar "cracked" engineers
+                </p>
+            </div>
+            <div class="slide-number">8/9</div>
+        </div>
+
+        <!-- Slide 9: Next Steps -->
+        <div class="slide highlight-slide">
+            <h2>Your Next Steps</h2>
+            <div class="action-grid">
+                <div class="action-box">
+                    <h3>🚀 Immediate Actions</h3>
+                    <ul>
+                        <li>Bookmark <a href="https://v3-recruiting-system.vercel.app/dashboard">V3 Internal Client Hub</a></li>
+                        <li>Set up system access (Gmail, LinkedIn, Gem)</li>
+                        <li>Review all documentation links</li>
+                        <li>Schedule shadowing sessions</li>
+                        <li>Connect with Big Bang research team</li>
+                    </ul>
+                </div>
+                <div class="action-box">
+                    <h3>📈 Week 1 Goals</h3>
+                    <ul>
+                        <li>Complete Probook onboarding call</li>
+                        <li>Shadow recruiter screens across clients</li>
+                        <li>Set up Probook in all systems</li>
+                        <li>Complete 100 outreach messages</li>
+                        <li>Master V3 methodology</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 40px; text-align: center;">
+                <h3>🎉 Welcome to V3!</h3>
+                <p style="font-size: 1.3em; color: #667eea; font-weight: 600;">
+                    You're now part of a high-performing recruitment team.
+                </p>
+                <p style="font-size: 1.2em; margin-top: 15px;">
+                    Let's make an impact together and build something amazing!
+                </p>
+            </div>
+            <div class="slide-number">9/9</div>
+        </div>
+    </div>
+
+    <style>
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</body>
+</html>
